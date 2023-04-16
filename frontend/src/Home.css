@@ -1,0 +1,31 @@
+.home{
+    background-color: #3c3f63;
+    height: 2000px; 
+    font-family: gill sans, sans-serif;
+    
+}
+
+h1{
+    font-size: 1000%;
+    color: #d87e79;    
+    position: relative;
+    top: 1400px;
+}
+
+.GetStartedButton{
+    width:50%;
+    margin:auto;
+    border:none;
+    margin-top: 40%;
+    padding:2%;
+    border-radius: 20px;
+    background-color: #573c56;
+    font-size: 65px;
+    color:#FFFFFF;
+    transition: filter 0.2s ease-in-out;
+    font-family: gill sans, sans-serif;
+}
+
+.GetStartedButton:hover {
+    filter:brightness(90%)
+}
