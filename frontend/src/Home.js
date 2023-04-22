@@ -1,38 +1,76 @@
 import React from "react";
 import "./Home.css";
-import { Text, Flex, Box, Button, Center } from "@chakra-ui/react";
+import Header from "./navbar/Header";
+import {
+  Text,
+  Flex,
+  Box,
+  Button,
+  Center,
+  Input,
+  Stack,
+  Link,
+} from "@chakra-ui/react";
 
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-// };
 export default function Home() {
   return (
     <div>
-      <Flex
-        w="100vw"
-        h="100vh"
-        bg="primary"
-        display="flex"
-        align="center"
-        justify="center"
-        direction="column"
-      >
-        <Box color="secondary" fontWeight="extrabold" fontSize="6xl" mt={40}>
-          Welcome to Little Chef
-        </Box>
-        <Box paddingTop={10}>
-          <Button color="secondary" size="lg" height="70px" width="600px">
-            Get Started
-          </Button>
-        </Box>
-      </Flex>
+      <Header />
+      <div>
+        <Flex
+          w="100vw"
+          h="100vh"
+          bg="primary"
+          display="flex"
+          align="center"
+          justify="center"
+          direction="column"
+        >
+          <Box
+            color="secondary"
+            fontWeight="medium"
+            fontSize="6xl"
+            paddingRight={600}
+            paddingTop={1}
+          >
+            Hello, Welcome to Little Chef. How may I help you?
+          </Box>
+          <Box
+            color="secondary"
+            fontWeight="light"
+            fontSize="2xl"
+            mt={20}
+            paddingRight={1300}
+          >
+            List the food you have in your fridge that you would like to cook
+            with.
+          </Box>
+          <Box
+            color="secondary"
+            fontWeight="semibold"
+            fontSize="3xl"
+            paddingTop={20}
+            paddingRight={1900}
+          >
+            Question
+          </Box>
+          <Box paddingTop={5}>
+            <Input
+              w="80vw"
+              h="15vh"
+              placeholder="Type your ingredients here"
+              size="lg"
+              color="white"
+              fontSize={45}
+            />
+          </Box>
+          <Box paddingTop={10}>
+            <Button color="secondary" size="lg" height="90px" width="2000px">
+              Submit
+            </Button>
+          </Box>
+        </Flex>
+      </div>
     </div>
-
-    // <div className="home">
-    //   <h1>Welcome to Little Chef</h1>
-    //   <button type="submit" className="GetStartedButton" onClick={handleSubmit}>
-    //     Get Started <a href="./welcome"></a>
-    //   </button>
-    // </div>
   );
 }

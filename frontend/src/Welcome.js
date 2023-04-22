@@ -1,19 +1,38 @@
 import React from "react";
-import './Welcome.css';
+import "./Welcome.css";
+import { Text, Flex, Box, Button, Center } from "@chakra-ui/react";
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+// };
+export default function Welcome() {
+  return (
+    <div>
+      <Flex
+        w="100vw"
+        h="100vh"
+        bg="primary"
+        display="flex"
+        align="center"
+        justify="center"
+        direction="column"
+      >
+        <Box color="secondary" fontWeight="extrabold" fontSize="6xl" mt={40}>
+          Welcome to Little Chef
+        </Box>
+        <Box paddingTop={10}>
+          <Button color="secondary" size="lg" height="70px" width="600px">
+            Get Started
+          </Button>
+        </Box>
+      </Flex>
+    </div>
+
+    // <div className="home">
+    //   <h1>Welcome to Little Chef</h1>
+    //   <button type="submit" className="GetStartedButton" onClick={handleSubmit}>
+    //     Get Started <a href="./welcome"></a>
+    //   </button>
+    // </div>
+  );
 }
-
-const Welcome = () => {
-    return(
-        <div className = "welcome">
-                <h2>Hello, Welcome to Little Chef. How may I help you?</h2>
-                <p> List the ingredients you have in your fridge that you would like to cook with.</p>
-                <p className="question"> Question</p>
-                <button type="submit" className = 'GetSumbitButton' onClick={handleSubmit}>Sumbit <a href="./login"></a></button>
-        </div>
-    );
-}
-
-export default Welcome;

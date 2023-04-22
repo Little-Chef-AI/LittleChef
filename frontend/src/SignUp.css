@@ -1,17 +1,34 @@
-.home {
+.welcome {
   background-color: #3c3f63;
   height: 2000px;
   font-family: gill sans, sans-serif;
 }
 
-h1 {
-  font-size: 1000%;
+h2 {
+  font-size: 400%;
   color: #d87e79;
   position: relative;
-  top: 1400px;
+  top: 300px;
+  right: 400px;
 }
 
-.GetStartedButton {
+p {
+  font-size: 200%;
+  color: #d87e79;
+  position: relative;
+  top: 300px;
+  right: 600px;
+}
+
+.question {
+  font-size: 200%;
+  color: #d87e79;
+  position: relative;
+  top: 400px;
+  right: 1050px;
+}
+
+.GetSubmitButton {
   width: 50%;
   margin: auto;
   border: none;
@@ -25,6 +42,6 @@ h1 {
   font-family: gill sans, sans-serif;
 }
 
-.GetStartedButton:hover {
+.GetSubmitButton:hover {
   filter: brightness(90%);
 }
