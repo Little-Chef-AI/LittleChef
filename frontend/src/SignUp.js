@@ -48,7 +48,7 @@ export default function SignUp() {
           mt={5}
           paddingTop={30}
           paddingBottom={0}
-          paddingRight={1070}
+          paddingRight={900}
         >
           Create account by filling your email and password.
         </Box>
@@ -92,7 +92,10 @@ export default function SignUp() {
           paddingBottom={2}
           paddingLeft={1500}
         >
-          Already have an account? Login
+          Already have an account?
+          <Link color="messenger.500" href="./login">
+            Login
+          </Link>
         </Box>
       </Flex>
     </div>

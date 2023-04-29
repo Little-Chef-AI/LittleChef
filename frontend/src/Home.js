@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import Header from "./navbar/Header";
+import Header from "./navbar/Navbar";
 import {
   Text,
   Flex,
@@ -9,13 +9,16 @@ import {
   Center,
   Input,
   Stack,
+  Grid,
+  GridItem,
   Link,
 } from "@chakra-ui/react";
+import Navbar from "./navbar/Navbar";
 
 export default function Home() {
   return (
     <div>
-      <Header />
+      <Navbar />
       <div>
         <Flex
           w="100vw"
@@ -30,17 +33,16 @@ export default function Home() {
             color="secondary"
             fontWeight="medium"
             fontSize="6xl"
-            paddingRight={600}
-            paddingTop={1}
+            paddingRight={1000}
           >
             Hello, Welcome to Little Chef. How may I help you?
           </Box>
           <Box
             color="secondary"
             fontWeight="light"
-            fontSize="2xl"
-            mt={20}
-            paddingRight={1300}
+            fontSize="3xl"
+            mt={10}
+            paddingRight={1500}
           >
             List the food you have in your fridge that you would like to cook
             with.
@@ -50,7 +52,7 @@ export default function Home() {
             fontWeight="semibold"
             fontSize="3xl"
             paddingTop={20}
-            paddingRight={1900}
+            paddingRight={2280}
           >
             Question
           </Box>

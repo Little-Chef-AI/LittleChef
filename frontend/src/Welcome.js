@@ -21,7 +21,14 @@ export default function Welcome() {
           Welcome to Little Chef
         </Box>
         <Box paddingTop={10}>
-          <Button color="secondary" size="lg" height="70px" width="600px">
+          <Button
+            color="secondary"
+            size="lg"
+            height="70px"
+            width="600px"
+            type="submit"
+            onClick={() => {}}
+          >
             Get Started
           </Button>
         </Box>

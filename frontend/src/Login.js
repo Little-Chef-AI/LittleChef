@@ -92,7 +92,10 @@ export default function Login() {
           paddingBottom={2}
           paddingLeft={1500}
         >
-          Don't have an account? Create an Account
+          Don't have an account?
+          <Link color="messenger.500" href="./signup">
+            Create an Account
+          </Link>
         </Box>
       </Flex>
     </div>
