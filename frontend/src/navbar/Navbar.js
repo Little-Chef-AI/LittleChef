@@ -20,40 +20,41 @@ export default function Navbar() {
     navigate("/home");
   }
   return (
-    <Flex align="center" justify="space-between" bg="primary" p="10">
-      <Box>
-        <Flex align="center" justify="center">
-          <Button
-            onClick={handleClick}
-            bg="white"
-            size="lg"
-            mr={4}
-            variant="ghost"
-          >
-            Home
-          </Button>
-          <Button
-            onClick={handleClick}
-            bg="white"
-            size="lg"
-            mr={4}
-            variant="ghost"
-          >
-            Saved Recipes
-          </Button>
-          <Button
-            onClick={handleClick}
-            bg="white"
-            size="lg"
-            mr={4}
-            variant="ghost"
-          >
-            Profile
-          </Button>
-        </Flex>
-      </Box>
-    </Flex>
-
+    <div>
+      <Flex align="center" backgroundColor="#3c3f63" p="10">
+        <Box>
+          <Flex align="center" justify="center">
+            <Button
+              onClick={handleClick}
+              size="lg"
+              mr={4}
+              variant="ghost"
+              textColor="white"
+            >
+              Home
+            </Button>
+            <Button
+              onClick={handleClick}
+              size="lg"
+              mr={4}
+              variant="ghost"
+              textColor="white"
+            >
+              Saved Recipes
+            </Button>
+            <Button
+              onClick={handleClick}
+              size="lg"
+              m={4}
+              variant="ghost"
+              textColor="white"
+            >
+              Profile
+            </Button>
+          </Flex>
+        </Box>
+      </Flex>
+    </div>
     // <div>
     //   <Flex
     //     w="100vw"

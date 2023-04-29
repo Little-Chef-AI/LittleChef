@@ -11,18 +11,18 @@ export default function Welcome() {
       <Flex
         w="100vw"
         h="100vh"
-        bg="primary"
+        backgroundColor="#3c3f63"
         display="flex"
         align="center"
         justify="center"
         direction="column"
       >
-        <Box color="secondary" fontWeight="extrabold" fontSize="6xl" mt={40}>
+        <Box color="#d87e79" fontWeight="extrabold" fontSize="6xl" mt={40}>
           Welcome to Little Chef
         </Box>
         <Box paddingTop={10}>
           <Button
-            color="secondary"
+            color="#d87e79"
             size="lg"
             height="70px"
             width="600px"

@@ -26,14 +26,14 @@ export default function SignUp() {
       <Flex
         w="100vw"
         h="100vh"
-        bg="primary"
+        backgroundColor="#3c3f63"
         display="flex"
         align="center"
         justify="center"
         direction="column"
       >
         <Box
-          color="secondary"
+          color="#d87e79"
           fontWeight="extrabold"
           fontSize="6xl"
           mt={3}
@@ -42,7 +42,7 @@ export default function SignUp() {
           SignUp
         </Box>
         <Box
-          color="secondary"
+          color="#d87e79"
           fontWeight="light"
           fontSize="5xl"
           mt={5}
@@ -55,7 +55,7 @@ export default function SignUp() {
 
         <Stack>
           <Box
-            color="secondary"
+            color="#d87e79"
             fontWeight="light"
             fontSize="2xl"
             mt={40}
@@ -66,7 +66,7 @@ export default function SignUp() {
           </Box>
           <Input placeholder="Enter email" size="lg" />
           <Box
-            color="secondary"
+            color="#d87e79"
             fontWeight="light"
             fontSize="2xl"
             mt={40}
@@ -79,13 +79,13 @@ export default function SignUp() {
         </Stack>
 
         <Box paddingTop={300}>
-          <Button color="secondary" size="lg" height="70px" width="600px">
+          <Button color="#d87e79" size="lg" height="70px" width="600px">
             Create Account
           </Button>
         </Box>
 
         <Box
-          color="secondary"
+          color="#d87e79"
           fontWeight="light"
           fontSize="2xl"
           mt={40}

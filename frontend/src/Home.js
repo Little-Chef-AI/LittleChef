@@ -1,6 +1,5 @@
 import React from "react";
 import "./Home.css";
-import Header from "./navbar/Navbar";
 import {
   Text,
   Flex,
@@ -11,54 +10,65 @@ import {
   Stack,
   Grid,
   GridItem,
+  Heading,
   Link,
+  Divider,
+  VStack,
+  Container,
 } from "@chakra-ui/react";
 import Navbar from "./navbar/Navbar";
 
-export default function Home() {
+function Home() {
   return (
     <div>
       <Navbar />
+      <Divider orientation="horizontal" />
       <div>
         <Flex
-          w="100vw"
-          h="100vh"
-          bg="primary"
+          backgroundColor="#3c3f63"
           display="flex"
-          align="center"
-          justify="center"
           direction="column"
+          h="100vh"
         >
           <Box
-            color="secondary"
-            fontWeight="medium"
+            color="#d87e79"
+            fontWeight="semibold"
             fontSize="6xl"
-            paddingRight={1000}
+            marginRight={"18%"}
+            mt={20}
           >
             Hello, Welcome to Little Chef. How may I help you?
           </Box>
           <Box
-            color="secondary"
+            color="#d87e79"
             fontWeight="light"
-            fontSize="3xl"
+            fontSize="4xl"
+            marginRight={"28%"}
             mt={10}
-            paddingRight={1500}
           >
             List the food you have in your fridge that you would like to cook
-            with.
+            with.{" "}
           </Box>
           <Box
-            color="secondary"
-            fontWeight="semibold"
-            fontSize="3xl"
-            paddingTop={20}
-            paddingRight={2280}
+            color="#d87e79"
+            fontWeight="seminbold"
+            fontSize="4xl"
+            marginRight={"53%"}
+            mt={10}
           >
-            Question
+            Ingredients:
           </Box>
-          <Box paddingTop={5}>
+          {/* saved ingredients */}
+          <Box
+            w={"60%"}
+            p={20}
+            mt={15}
+            marginLeft={"18%"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
             <Input
-              w="80vw"
+              w="60vw"
               h="15vh"
               placeholder="Type your ingredients here"
               size="lg"
@@ -66,13 +76,60 @@ export default function Home() {
               fontSize={45}
             />
           </Box>
-          <Box paddingTop={10}>
-            <Button color="secondary" size="lg" height="90px" width="2000px">
+          {/* Button to submit */}
+          <Box>
+            <Button color="#d87e79" size="lg" height="90px" width="2000px">
               Submit
             </Button>
           </Box>
         </Flex>
       </div>
     </div>
+    // <div className="backgroundContainer">
+    //   <Navbar />
+    //   <Divider orientation="horizontal" />
+    //   <div>
+    //     <Flex backgroundColor="#3c3f63" display="flex" direction="column">
+    //       <Box color="#d87e79" fontWeight="medium" fontSize="6xl" mt={100}>
+    //         Hello, Welcome to Little Chef. How may I help you?
+    //       </Box>
+    //       <Box
+    //         color="#d87e79"
+    //         fontWeight="light"
+    //         fontSize="3xl"
+    //         mt={10}
+    //         marginRight={"50%"}
+    //       >
+    //         List the food you have in your fridge that you would like to cook
+    //         with.
+    //       </Box>
+    //       <Box
+    //         color="#d87e79"
+    //         fontWeight="semibold"
+    //         fontSize="3xl"
+    //         paddingTop={20}
+    //       >
+    //         Question
+    //       </Box>
+    //       <Box paddingTop={5}>
+    //         <Input
+    //           w="80vw"
+    //           h="15vh"
+    //           placeholder="Type your ingredients here"
+    //           size="lg"
+    //           color="white"
+    //           fontSize={45}
+    //         />
+    //       </Box>
+    //       <Box paddingTop={10}>
+    //         <Button color="#d87e79" size="lg" height="90px" width="2000px">
+    //           Submit
+    //         </Button>
+    //       </Box>
+    //     </Flex>
+    //   </div>
+    // </div>
   );
 }
+
+export default Home;
