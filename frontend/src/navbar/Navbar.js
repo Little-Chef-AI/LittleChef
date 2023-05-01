@@ -44,12 +44,13 @@ export default function Navbar() {
             </Button>
             <Button
               onClick={handleClick}
+              backgroundColor="#d87e79"
               size="lg"
-              m={4}
-              variant="ghost"
+              mr={4}
+              marginLeft={2900}
               textColor="white"
             >
-              Profile
+              Logout
             </Button>
           </Flex>
         </Box>

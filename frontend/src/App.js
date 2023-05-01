@@ -10,7 +10,6 @@ import GeneratedRecipe from "./GeneratedRecipe";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"; //install using the command npm i react-router-dom
 import SavedRecipes from "./SavedRecipes";
-import ProfilePage from "./ProfilePage";
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
           <Route exact path="/welcome" element={<Welcome />} />
           <Route exact path="/newrecipe" element={<GeneratedRecipe />} />
           <Route exact path="/savedrecipes" element={<SavedRecipes />} />
-          <Route exact path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>
