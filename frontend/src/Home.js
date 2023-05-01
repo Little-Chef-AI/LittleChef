@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import React from "react";
-import "./Home.css";
-=======
 import React, { useState } from 'react';
 import './Home.css';
-import Header from './navbar/Header';
->>>>>>> f18a5786eea3a20939608ce6f3c058eb2d57cccc
+
 import {
   Text,
   Flex,
@@ -18,21 +13,15 @@ import {
   GridItem,
   Heading,
   Link,
-<<<<<<< HEAD
   Divider,
   VStack,
   Container,
-} from "@chakra-ui/react";
-import Navbar from "./navbar/Navbar";
+} from '@chakra-ui/react';
+import Navbar from './navbar/Navbar';
+
+const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 function Home() {
-=======
-} from '@chakra-ui/react';
-import { MagicSpinner } from 'react-spinners-kit';
-
-const API_KEY = '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';
-
-export default function Home() {
   const [ingredientsInput, setingredientsInput] = useState('');
   const [result, setResult] = useState('');
   //   const [is_loading, set_is_loading] = useState(false);
@@ -58,7 +47,7 @@ export default function Home() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${REACT_APP_API_KEY}`,
       },
       body: JSON.stringify(APIBody),
     })
@@ -71,7 +60,6 @@ export default function Home() {
       });
   }
 
->>>>>>> f18a5786eea3a20939608ce6f3c058eb2d57cccc
   return (
     <div>
       <Navbar />
@@ -87,7 +75,7 @@ export default function Home() {
             color="#d87e79"
             fontWeight="semibold"
             fontSize="6xl"
-            marginRight={"18%"}
+            marginRight={'18%'}
             mt={20}
           >
             Hello, Welcome to Little Chef. How may I help you?
@@ -96,29 +84,29 @@ export default function Home() {
             color="#d87e79"
             fontWeight="light"
             fontSize="4xl"
-            marginRight={"28%"}
+            marginRight={'28%'}
             mt={10}
           >
             List the food you have in your fridge that you would like to cook
-            with.{" "}
+            with.{' '}
           </Box>
           <Box
             color="#d87e79"
             fontWeight="seminbold"
             fontSize="4xl"
-            marginRight={"53%"}
+            marginRight={'53%'}
             mt={10}
           >
             Ingredients:
           </Box>
           {/* saved ingredients */}
           <Box
-            w={"60%"}
+            w={'60%'}
             p={20}
             mt={15}
-            marginLeft={"18%"}
-            justifyContent={"center"}
-            alignItems={"center"}
+            marginLeft={'18%'}
+            justifyContent={'center'}
+            alignItems={'center'}
           >
             <Input
               w="60vw"
@@ -131,20 +119,15 @@ export default function Home() {
               onChange={(e) => setingredientsInput(e.target.value)}
             />
           </Box>
-<<<<<<< HEAD
           {/* Button to submit */}
           <Box>
-            <Button color="#d87e79" size="lg" height="90px" width="2000px">
-=======
-          <Box paddingTop={10}>
             <Button
               onClick={onSubmit}
-              color="secondary"
+              color="#d87e79"
               size="lg"
               height="90px"
               width="2000px"
             >
->>>>>>> f18a5786eea3a20939608ce6f3c058eb2d57cccc
               Submit
             </Button>
           </Box>
