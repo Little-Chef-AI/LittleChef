@@ -15,7 +15,7 @@ import {
   VStack,
   Container,
 } from "@chakra-ui/react";
-import Navbar from "./navbar/Navbar";
+import Navbar from "../components/Navbar";
 
 function SavedRecipes() {
   return (

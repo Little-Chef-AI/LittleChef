@@ -1,15 +1,14 @@
 import logo from "./logo.svg";
-import "./App.css";
 import React from "react";
-import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import Welcome from "./Welcome";
-import GeneratedRecipe from "./GeneratedRecipe";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Welcome from "./pages/Welcome";
+import GeneratedRecipe from "./pages/GeneratedRecipe";
 
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"; //install using the command npm i react-router-dom
-import SavedRecipes from "./SavedRecipes";
+import SavedRecipes from "./pages/SavedRecipes";
 
 function App() {
   return (

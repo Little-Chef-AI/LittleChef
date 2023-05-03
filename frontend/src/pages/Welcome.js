@@ -1,5 +1,4 @@
 import React from "react";
-import "./Welcome.css";
 import { Text, Flex, Box, Button, Center } from "@chakra-ui/react";
 
 // const handleSubmit = async (e) => {

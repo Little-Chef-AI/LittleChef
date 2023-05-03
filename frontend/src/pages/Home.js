@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Home.css";
 
 import {
   Text,
@@ -17,7 +16,7 @@ import {
   VStack,
   Container,
 } from "@chakra-ui/react";
-import Navbar from "./navbar/Navbar";
+import Navbar from "../components/Navbar";
 
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -76,7 +75,7 @@ function Home() {
             fontWeight="semibold"
             fontSize="6xl"
             marginRight={"18%"}
-            mt={20}
+            pt={20}
           >
             Hello, Welcome to Little Chef. How may I help you?
           </Box>
