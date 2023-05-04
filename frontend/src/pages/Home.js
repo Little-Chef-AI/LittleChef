@@ -76,19 +76,37 @@ function Home() {
           gap={8}
         >
           <VStack gap={10} w={["95%", "80%", "60%", "50%", "35%"]} h={"100%"}>
-            <Box textColor="#d87e79" fontWeight="semibold" fontSize="6xl">
+            <Box
+              alignItem="flex-start"
+              w="60vw"
+              textColor="#d87e79"
+              fontWeight="semibold"
+              fontSize="6xl"
+            >
               {" "}
               Hello, Welcome to Little Chef. How may I help you?
             </Box>
-            <Box color="#d87e79" fontWeight="light" fontSize="4xl">
+            <Box
+              alignItem="flex-start"
+              w="60vw"
+              color="#d87e79"
+              fontWeight="light"
+              fontSize="4xl"
+            >
               List the food you have in your fridge that you would like to cook
               with. Then save your recipe!{" "}
             </Box>
-            <HStack>
+            <HStack padding="5%">
               {/* separate box with ingredients and generated recipe */}
               <VStack>
                 {/* left side */}
-                <Box color="#d87e79" fontWeight="seminbold" fontSize="4xl">
+                <Box
+                  alignItem="flex-start"
+                  w="30vw"
+                  color="#d87e79"
+                  fontWeight="seminbold"
+                  fontSize="4xl"
+                >
                   Ingredients:
                 </Box>
                 {/* ingredients list */}
@@ -121,7 +139,13 @@ function Home() {
               </VStack>
 
               <VStack>
-                <Box color="#d87e79" fontWeight="seminbold" fontSize="4xl">
+                <Box
+                  alignItem="flex-start"
+                  w="30vw"
+                  color="#d87e79"
+                  fontWeight="seminbold"
+                  fontSize="4xl"
+                >
                   Recipe
                 </Box>
                 {/* generated recipe */}

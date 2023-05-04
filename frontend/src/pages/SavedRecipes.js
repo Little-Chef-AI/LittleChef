@@ -19,60 +19,82 @@ import Navbar from "../components/Navbar";
 
 function SavedRecipes() {
   return (
-    <div>
+    <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
       <Navbar />
       <Divider orientation="horizontal" />
-      <div>
+
+      {/* actual code */}
+      <Center>
         <Flex
-          backgroundColor="#3c3f63"
-          display="flex"
-          direction="column"
-          h="100vh"
+          my={10}
+          w={"100%"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={8}
         >
-          <Box
-            color="#d87e79"
-            fontWeight="semibold"
-            fontSize="6xl"
-            marginRight={"48%"}
-            mt={20}
-          >
-            Saved Recipes
-          </Box>
-          <Box
-            color="#d87e79"
-            fontWeight="light"
-            fontSize="4xl"
-            marginRight={"29%"}
-            mt={10}
-          >
-            Here are your saved recipes along with the ingredients you inputted.
-          </Box>
-          <Box
-            color="#d87e79"
-            fontWeight="light"
-            fontSize="4xl"
-            marginRight={"51%"}
-            mt={10}
-          >
-            Listed ingredients:
-          </Box>
-          {/* saved ingredients */}
-          <Box
-            border={"5px solid #9A9A9A"}
-            w={"60%"}
-            p={20}
-            mt={20}
-            marginLeft={"20%"}
-            borderRadius={20}
-            justifyContent={"center"}
-            alignItems={"center"}
-          ></Box>
-          <Stack mt={20} padding="50px">
-            <Divider orientation="horizontal" />
-          </Stack>
+          <VStack gap={10} w={["95%", "80%", "60%", "50%", "35%"]} h={"100%"}>
+            <Box
+              alignItem="flex-start"
+              w="60vw"
+              textColor="#d87e79"
+              fontWeight="semibold"
+              fontSize="6xl"
+            >
+              {" "}
+              Saved Recipes
+            </Box>
+            <Box
+              alignItem="flex-start"
+              w="60vw"
+              color="#d87e79"
+              fontWeight="light"
+              fontSize="4xl"
+            >
+              Here are your saved recipes along with the ingredients you
+              inputted.{" "}
+            </Box>
+
+            {/* separate box with ingredients and generated recipe */}
+            <VStack>
+              {/* left side */}
+              <Box
+                alignItem="flex-start"
+                w="60vw"
+                color="#d87e79"
+                fontWeight="seminbold"
+                fontSize="4xl"
+              >
+                Listed Ingredients:
+              </Box>
+            </VStack>
+
+            <VStack>
+              <Box
+                alignItem="flex-start"
+                w="60vw"
+                color="#d87e79"
+                fontWeight="seminbold"
+                fontSize="4xl"
+              >
+                Recipe
+              </Box>
+              {/* generated recipe */}
+              <Box
+                w="60vw"
+                h="30vh"
+                bg="primary"
+                color="white"
+                fontSize={45}
+                p={5}
+                border={"5px solid white"}
+                borderRadius={10}
+              ></Box>
+              <Divider padding="2%" orientation="horizontal" w="80vw" />
+            </VStack>
+          </VStack>
         </Flex>
-      </div>
-    </div>
+      </Center>
+    </Box>
   );
 }
 

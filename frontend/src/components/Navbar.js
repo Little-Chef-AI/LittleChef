@@ -19,10 +19,6 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/home");
-  }
-
   return (
     <div>
       <Flex
@@ -39,7 +35,7 @@ export default function Navbar() {
 
         <HStack spacing="20px">
           <Button
-            onClick={handleClick}
+            onClick={() => navigate("/home")}
             size="lg"
             variant="ghost"
             textColor="white"
@@ -47,7 +43,7 @@ export default function Navbar() {
             Home
           </Button>
           <Button
-            onClick={handleClick}
+            onClick={() => navigate("/savedrecipes")}
             size="lg"
             variant="ghost"
             textColor="white"

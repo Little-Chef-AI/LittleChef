@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Welcome from "./pages/Welcome";
-import GeneratedRecipe from "./pages/GeneratedRecipe";
 
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"; //install using the command npm i react-router-dom
@@ -21,7 +20,6 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/welcome" element={<Welcome />} />
-          <Route exact path="/newrecipe" element={<GeneratedRecipe />} />
           <Route exact path="/savedrecipes" element={<SavedRecipes />} />
         </Routes>
       </BrowserRouter>
