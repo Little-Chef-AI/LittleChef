@@ -49,6 +49,7 @@ export default function Navbar() {
               variant="ghost"
               textColor="white"
             >
+              
               Profile
             </Button>
           </Flex>

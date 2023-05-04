@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Home.css';
 
+
 import {
   Text,
   Flex,
@@ -21,7 +22,9 @@ import Navbar from './navbar/Navbar';
 
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
+
 function Home() {
+
   const [ingredientsInput, setingredientsInput] = useState('');
   const [result, setResult] = useState('');
   //   const [is_loading, set_is_loading] = useState(false);
@@ -78,7 +81,8 @@ function Home() {
             marginRight={'18%'}
             mt={20}
           >
-            Hello, Welcome to Little Chef. How may I help you?
+            Hello, 
+    Welcome to Little Chef. How may I help you?
           </Box>
           <Box
             color="#d87e79"

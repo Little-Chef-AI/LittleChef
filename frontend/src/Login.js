@@ -1,5 +1,8 @@
 import React from "react";
 import "./Login.css";
+import { useState } from "react";
+import { Link } from "react-router-dom" 
+import axios from "axios";
 import {
   Text,
   Flex,
@@ -8,7 +11,6 @@ import {
   Center,
   Input,
   Stack,
-  Link,
 } from "@chakra-ui/react";
 //import { Link as ReachLink } from "@reach/router";
 
@@ -16,12 +18,39 @@ import {
 //   Home
 // </Link>;
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-};
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+// };
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = () => {
+    if(email.length===0){
+      alert("Email is required");
+    }
+    else if(password.length === 0){
+      alert("Password is required");
+    }
+    else{
+      const url = 'http://localhost:80/authenticate.php';
+      let fData = new FormData();
+      fData.append('email', email);
+      fData.append('password', password);
+      axios.post(url,fData).then(response=> {
+        if (response.data === 'Success!') {
+          alert("Login successful!");
+          // redirect to home page
+        } else {
+          alert("Invalid email or password.");
+        }
+      }).catch(error=> alert(error));
+    }
+  };
+
   return (
+    
     <div>
       <Flex
         w="100vw"
@@ -52,7 +81,7 @@ export default function Login() {
         >
           Enter your email and password to login.
         </Box>
-
+        
         <Stack>
           <Box
             color="#d87e79"
@@ -64,7 +93,7 @@ export default function Login() {
           >
             Email
           </Box>
-          <Input placeholder="Enter email" size="lg" />
+          <Input placeholder="Enter email" size="lg" value ={email} onChange={(e) => setEmail(e.target.value)}/>
           <Box
             color="#d87e79"
             fontWeight="light"
@@ -74,16 +103,14 @@ export default function Login() {
             paddingRight={1750}
           >
             Password
-          </Box>
-          <Input placeholder="Enter password" size="lg" />
+            </Box>
+            <Input placeholder="Enter password" size="lg" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </Stack>
-
         <Box paddingTop={300}>
           <Button color="#d87e79" size="lg" height="70px" width="600px">
-            Login
+          <Link to = "/login" name = "submit" id= 'submit'  onClick={handleSubmit} >Login   </Link> 
           </Button>
         </Box>
-
         <Box
           color="#d87e79"
           fontWeight="light"
@@ -99,7 +126,7 @@ export default function Login() {
         </Box>
       </Flex>
     </div>
-
+    
     // <div className="home">
     //   <h1>Welcome to Little Chef</h1>
     //   <button type="submit" className="GetStartedButton" onClick={handleSubmit}>
@@ -108,6 +135,7 @@ export default function Login() {
     // </div>
   );
 }
+
 
 // const Welcome = () => {
 //     return(

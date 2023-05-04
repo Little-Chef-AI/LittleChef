@@ -1,6 +1,9 @@
 import React from "react";
 import "./SignUp.css";
-import {
+import { Link } from "react-router-dom" 
+import axios from 'axios'; //for data export
+import { useState } from "react";
+ import {
   Text,
   Flex,
   Box,
@@ -8,19 +11,41 @@ import {
   Center,
   Input,
   Stack,
-  Link,
 } from "@chakra-ui/react";
-//import { Link as ReachLink } from "@reach/router";
+import { ErrorResponse } from "@remix-run/router";
 
 // <Link as={ReachLink} to="/home">
 //   Home
 // </Link>;
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-};
+
+
 
 export default function SignUp() {
+  const [name,setName] = useState('');
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+const handleSubmit = () => {
+if(name.length === 0){
+  alert("Name is required");
+}
+else if(email.length===0){
+  alert("Email is required");
+}
+else if(password.length === 0){
+  alert("Password is required");
+}
+else{
+  const url = 'http://localhost:80/database.php';
+  let fData = new FormData();
+  fData.append('name', name);
+  fData.append('email', email);
+  fData.append('password', password);
+  axios.post(url,fData).then(response=> alert(response.data)).catch(error=> alert(error));
+}
+};
+
   return (
     <div>
       <Flex
@@ -52,8 +77,18 @@ export default function SignUp() {
         >
           Create account by filling your email and password.
         </Box>
-
         <Stack>
+        <Box
+            color="#d87e79"
+            fontWeight="light"
+            fontSize="2xl"
+            mt={40}
+            paddingTop={10}
+            paddingRight={1800}
+          >
+            Name
+          </Box>
+          <Input placeholder="Enter Name" size="lg" name='name' value ={name} onChange={(e) => setName(e.target.value)}/>
           <Box
             color="#d87e79"
             fontWeight="light"
@@ -64,7 +99,7 @@ export default function SignUp() {
           >
             Email
           </Box>
-          <Input placeholder="Enter email" size="lg" />
+          <Input placeholder="Enter email" size="lg" name = 'email' value ={email} onChange={(e) => setEmail(e.target.value)} />
           <Box
             color="#d87e79"
             fontWeight="light"
@@ -75,15 +110,15 @@ export default function SignUp() {
           >
             Password
           </Box>
-          <Input placeholder="Enter password" size="lg" />
+          <Input placeholder="Enter password" size="lg" name = 'password' value ={password} onChange={(e) => setPassword(e.target.value)}/>
         </Stack>
 
         <Box paddingTop={300}>
           <Button color="#d87e79" size="lg" height="70px" width="600px">
-            Create Account
+          <Link to = "/login" name = "submit" id= 'submit'  onClick={handleSubmit} >  Create Account   </Link> 
           </Button>
+     
         </Box>
-
         <Box
           color="#d87e79"
           fontWeight="light"

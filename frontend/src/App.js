@@ -13,6 +13,7 @@ import SavedRecipes from "./SavedRecipes";
 import ProfilePage from "./ProfilePage";
 
 function App() {
+ 
   return (
     <div className="App">
       <BrowserRouter>
