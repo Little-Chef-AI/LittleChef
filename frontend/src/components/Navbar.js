@@ -8,8 +8,11 @@ import {
   TabPanel,
   Flex,
   Button,
+  Heading,
   Divider,
   Box,
+  HStack,
+  Spacer,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,66 +25,34 @@ export default function Navbar() {
 
   return (
     <div>
-      <Flex align="center" backgroundColor="#3c3f63" p="10">
-        <Box>
-          <Flex align="center" justify="center">
-            <Button
-              onClick={handleClick}
-              size="lg"
-              mr={4}
-              variant="ghost"
-              textColor="white"
-            >
-              Home
-            </Button>
-            <Button
-              onClick={handleClick}
-              size="lg"
-              mr={4}
-              variant="ghost"
-              textColor="white"
-            >
-              Saved Recipes
-            </Button>
-            <Button
-              onClick={handleClick}
-              backgroundColor="#d87e79"
-              size="lg"
-              mr={4}
-              marginLeft={2900}
-              textColor="white"
-            >
-              Logout
-            </Button>
-          </Flex>
-        </Box>
+      <Flex as="nav" p="10px" alignItems="center" padding="2%">
+        <Heading as="h1" textColor="#d87e79">
+          Little Chef
+        </Heading>
+        <Spacer />
+
+        <HStack spacing="20px">
+          <Button
+            onClick={handleClick}
+            size="lg"
+            variant="ghost"
+            textColor="white"
+          >
+            Home
+          </Button>
+          <Button
+            onClick={handleClick}
+            size="lg"
+            variant="ghost"
+            textColor="white"
+          >
+            Saved Recipes
+          </Button>
+          <Button size="lg" backgroundColor="#d0b280" textColor="white">
+            Logout
+          </Button>
+        </HStack>
       </Flex>
     </div>
-    // <div>
-    //   <Flex
-    //     w="100vw"
-    //     h="30vh"
-    //     bg="primary"
-    //     display="flex"
-    //     align="center"
-    //     justify="center"
-    //     direction="column"
-    //     paddingBottom={20}
-    //   >
-    //     <Tabs variant="soft-rounded" colorScheme="green">
-    //       <TabList>
-    //         <Tab> Home </Tab>
-    //         <Tab> Saved Recipes </Tab>
-    //         <Tab> Profile </Tab>
-    //       </TabList>
-    //       <Divider orientation="horizontal" w="90vw" paddingTop={10} />
-    //       <TabPanels>
-    //         <TabPanel></TabPanel>
-    //         <p> Test </p>
-    //         <TabPanel></TabPanel>
-    //       </TabPanels>
-    //     </Tabs>
-    //   </Flex>
-    // </div>
   );
 }
