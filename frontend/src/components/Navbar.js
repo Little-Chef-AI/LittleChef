@@ -25,7 +25,13 @@ export default function Navbar() {
 
   return (
     <div>
-      <Flex as="nav" p="10px" alignItems="center" padding="2%">
+      <Flex
+        backgroundColor="#3c3f63"
+        as="nav"
+        p="10px"
+        alignItems="center"
+        padding="2%"
+      >
         <Heading as="h1" textColor="#d87e79">
           Little Chef
         </Heading>
