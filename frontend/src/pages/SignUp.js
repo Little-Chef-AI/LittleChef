@@ -45,13 +45,13 @@ export default function SignUp() {
               <FormLabel textColor="white" m={0} display={"inline"}>
                 Email
               </FormLabel>
-              <Input />
+              <Input textColor="white" />
             </FormControl>
             <FormControl isRequired>
               <FormLabel textColor="white" m={0}>
                 Password
               </FormLabel>
-              <Input />
+              <Input textColor="white" />
             </FormControl>
             <Box paddingTop={10}>
               <Link href="/home">
