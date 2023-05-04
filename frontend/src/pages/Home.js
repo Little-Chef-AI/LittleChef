@@ -15,6 +15,7 @@ import {
   Divider,
   VStack,
   Container,
+  Textarea,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 
@@ -60,89 +61,155 @@ function Home() {
   }
 
   return (
-    <div>
+    <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
       <Navbar />
       <Divider orientation="horizontal" />
-      <div>
+      <Center>
         <Flex
-          backgroundColor="#3c3f63"
-          display="flex"
-          direction="column"
-          h="100vh"
+          my={10}
+          w={"100%"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={8}
         >
-          <Box
-            color="#d87e79"
-            fontWeight="semibold"
-            fontSize="6xl"
-            marginRight={"18%"}
-            pt={20}
-          >
-            Hello, Welcome to Little Chef. How may I help you?
-          </Box>
-          <Box
-            color="#d87e79"
-            fontWeight="light"
-            fontSize="4xl"
-            marginRight={"28%"}
-            mt={10}
-          >
-            List the food you have in your fridge that you would like to cook
-            with.{" "}
-          </Box>
-          <Box
-            color="#d87e79"
-            fontWeight="seminbold"
-            fontSize="4xl"
-            marginRight={"53%"}
-            mt={10}
-          >
-            Ingredients:
-          </Box>
-          {/* saved ingredients */}
-          <Box
-            w={"60%"}
-            p={20}
-            mt={15}
-            marginLeft={"18%"}
-            justifyContent={"center"}
-            alignItems={"center"}
-          >
-            <Input
-              w="60vw"
-              h="15vh"
-              placeholder="Type your ingredients here"
-              size="lg"
+          <VStack gap={10} w={["95%", "80%", "60%", "50%", "35%"]} h={"100%"}>
+            <Box textColor="#d87e79" fontWeight="semibold" fontSize="6xl">
+              {" "}
+              Hello, Welcome to Little Chef. How may I help you?
+            </Box>
+            <Box color="#d87e79" fontWeight="light" fontSize="4xl">
+              List the food you have in your fridge that you would like to cook
+              with.{" "}
+            </Box>
+            {/* left side */}
+            <Box color="#d87e79" fontWeight="seminbold" fontSize="4xl">
+              Ingredients:
+            </Box>
+            {/* ingredients list */}
+            <Box>
+              <Textarea
+                textColor="white"
+                borderColor="white"
+                placeholder="Type your ingredients here."
+                fontSize="3xl"
+                w="10wh"
+                h="10vh"
+                size="lg"
+                type="text"
+                onChange={(e) => setingredientsInput(e.target.value)}
+              />
+            </Box>
+            {/* submit button to get generated recipe */}
+            <Box>
+              <Button
+                onClick={onSubmit}
+                textColor="white"
+                backgroundColor="#d87e79"
+                size="lg"
+                height="70px"
+                width="500px"
+              >
+                Submit
+              </Button>
+            </Box>
+            {/* generated recipe */}
+            <Box
+              w="100vw"
+              h="100vw"
+              bg="primary"
               color="white"
               fontSize={45}
-              type="text"
-              onChange={(e) => setingredientsInput(e.target.value)}
-            />
-          </Box>
-          {/* Button to submit */}
-          <Box>
-            <Button
-              onClick={onSubmit}
-              color="#d87e79"
-              size="lg"
-              height="90px"
-              width="2000px"
+              p={5}
             >
-              Submit
-            </Button>
-          </Box>
-          <Box
-            w="100vw"
-            h="100vw"
-            bg="primary"
-            color="white"
-            fontSize={45}
-            p={5}
-          >
-            {result !== "" ? <h3>{result}</h3> : null}
-          </Box>
+              {result !== "" ? <h3>{result}</h3> : null}
+            </Box>
+          </VStack>
         </Flex>
-      </div>
-    </div>
+      </Center>
+    </Box>
+    // <div>
+    //   <Navbar />
+    //   <Divider orientation="horizontal" />
+    //   <div>
+    //     <Flex
+    //       backgroundColor="#3c3f63"
+    //       display="flex"
+    //       direction="column"
+    //       h="100vh"
+    //     >
+    //       <Box
+    //         color="#d87e79"
+    //         fontWeight="semibold"
+    //         fontSize="6xl"
+    //         marginRight={"18%"}
+    //         pt={20}
+    //       >
+    //         Hello, Welcome to Little Chef. How may I help you?
+    //       </Box>
+    //       <Box
+    //         color="#d87e79"
+    //         fontWeight="light"
+    //         fontSize="4xl"
+    //         marginRight={"28%"}
+    //         mt={10}
+    //       >
+    //         List the food you have in your fridge that you would like to cook
+    //         with.{" "}
+    //       </Box>
+    //       <Box
+    //         color="#d87e79"
+    //         fontWeight="seminbold"
+    //         fontSize="4xl"
+    //         marginRight={"53%"}
+    //         mt={10}
+    //       >
+    //         Ingredients:
+    //       </Box>
+    //       {/* saved ingredients */}
+    //       <Box
+    //         w={"60%"}
+    //         p={20}
+    //         mt={15}
+    //         marginLeft={"18%"}
+    //         justifyContent={"center"}
+    //         alignItems={"center"}
+    //       >
+    //         <Input
+    //           w="60vw"
+    //           h="15vh"
+    //           placeholder="Type your ingredients here"
+    //           size="lg"
+    //           color="white"
+    //           fontSize={45}
+    //           type="text"
+    //           onChange={(e) => setingredientsInput(e.target.value)}
+    //         />
+    //       </Box>
+    //       {/* Button to submit */}
+    //       <Box>
+    //         <Button
+    //           onClick={onSubmit}
+    //           color="#d87e79"
+    //           size="lg"
+    //           height="90px"
+    //           width="2000px"
+    //         >
+    //           Submit
+    //         </Button>
+    //       </Box>
+    //       <Box
+    //         w="100vw"
+    //         h="100vw"
+    //         bg="primary"
+    //         color="white"
+    //         fontSize={45}
+    //         p={5}
+    //       >
+    //         {result !== "" ? <h3>{result}</h3> : null}
+    //       </Box>
+    //     </Flex>
+    //   </div>
+    // </div>
   );
 }
 

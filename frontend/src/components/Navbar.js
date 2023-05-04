@@ -19,6 +19,7 @@ export default function Navbar() {
   function handleClick() {
     navigate("/home");
   }
+
   return (
     <div>
       <Flex align="center" backgroundColor="#3c3f63" p="10">
@@ -84,19 +85,3 @@ export default function Navbar() {
     // </div>
   );
 }
-
-// const Header = () => {
-//     return(
-//         <>
-//         <div className="header">
-//             <div className="logo">
-//                 <img src={headerImg} alt="" />
-//             </div>
-//             <div className="Overlay"></div>
-//         </div>
-//         <div className="Content">
-//             <p></p>
-//         </div>
-//         </>
-//     )
-// }
