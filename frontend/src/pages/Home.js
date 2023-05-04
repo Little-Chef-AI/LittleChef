@@ -16,6 +16,7 @@ import {
   VStack,
   Container,
   Textarea,
+  HStack,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 
@@ -64,6 +65,8 @@ function Home() {
     <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
       <Navbar />
       <Divider orientation="horizontal" />
+
+      {/* actual code */}
       <Center>
         <Flex
           my={10}
@@ -79,50 +82,77 @@ function Home() {
             </Box>
             <Box color="#d87e79" fontWeight="light" fontSize="4xl">
               List the food you have in your fridge that you would like to cook
-              with.{" "}
+              with. Then save your recipe!{" "}
             </Box>
-            {/* left side */}
-            <Box color="#d87e79" fontWeight="seminbold" fontSize="4xl">
-              Ingredients:
-            </Box>
-            {/* ingredients list */}
-            <Box>
-              <Textarea
-                textColor="white"
-                borderColor="white"
-                placeholder="Type your ingredients here."
-                fontSize="3xl"
-                w="10wh"
-                h="10vh"
-                size="lg"
-                type="text"
-                onChange={(e) => setingredientsInput(e.target.value)}
-              />
-            </Box>
-            {/* submit button to get generated recipe */}
-            <Box>
-              <Button
-                onClick={onSubmit}
-                textColor="white"
-                backgroundColor="#d87e79"
-                size="lg"
-                height="70px"
-                width="500px"
-              >
-                Submit
-              </Button>
-            </Box>
-            {/* generated recipe */}
-            <Box
-              w="100vw"
-              h="100vw"
-              bg="primary"
-              color="white"
-              fontSize={45}
-              p={5}
-            >
-              {result !== "" ? <h3>{result}</h3> : null}
-            </Box>
+            <HStack>
+              {/* separate box with ingredients and generated recipe */}
+              <VStack>
+                {/* left side */}
+                <Box color="#d87e79" fontWeight="seminbold" fontSize="4xl">
+                  Ingredients:
+                </Box>
+                {/* ingredients list */}
+                <Box>
+                  <Textarea
+                    textColor="white"
+                    borderColor="white"
+                    placeholder="Type your ingredients here."
+                    fontSize="3xl"
+                    w="30vw"
+                    h="30vh"
+                    size="lg"
+                    type="text"
+                    onChange={(e) => setingredientsInput(e.target.value)}
+                  />
+                </Box>
+                {/* submit button to get generated recipe */}
+                <Box pt={6}>
+                  <Button
+                    onClick={onSubmit}
+                    textColor="white"
+                    backgroundColor="#d87e79"
+                    size="lg"
+                    height="70px"
+                    width="500px"
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </VStack>
+
+              <VStack>
+                <Box color="#d87e79" fontWeight="seminbold" fontSize="4xl">
+                  Recipe
+                </Box>
+                {/* generated recipe */}
+                <Box
+                  w="30vw"
+                  h="30vh"
+                  bg="primary"
+                  color="white"
+                  fontSize={45}
+                  p={5}
+                  border={"5px solid white"}
+                  borderRadius={10}
+                >
+                  {result !== "" ? <h3>{result}</h3> : null}
+                </Box>
+
+                {/* save recipe button */}
+                <Box>
+                  <Button
+                    onClick={onSubmit}
+                    textColor="white"
+                    backgroundColor="#d87e79"
+                    size="lg"
+                    height="70px"
+                    width="500px"
+                  >
+                    Save Recipe
+                  </Button>
+                </Box>
+              </VStack>
+            </HStack>
           </VStack>
         </Flex>
       </Center>
