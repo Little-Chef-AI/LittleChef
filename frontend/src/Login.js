@@ -2,7 +2,7 @@
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
-import { Link } from "react-router-dom" 
+import { Link, useNavigate } from "react-router-dom" 
 import axios from "axios";
 import {
   Text,
@@ -23,24 +23,51 @@ import {
 //   e.preventDefault();
 // };
 
+
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({email:'', password: ''}) 
+  let navigate = useNavigate();
+const handleChange = (e) => {
+  setUser({...user, [e.target.name]: e.target.value})
+}
 
+const submitForm = (e) => {
+  e.preventDefault();
+  const sendData = {
+    email: user.email,
+    password: user.password
+  }
 
-  const handleSubmit = () => {
-    if(email.length===0){
-      alert("Email is required");
-    }
-    else if(password.length === 0){
-      alert("Password is required");
-    }
-    else{
-      const url = 'http://localhost:80/authenticate.php ';
-      let fData = new FormData();
-      fData.append('email', email);
-      fData.append('password', password);
-      axios.post(url,fData).then(response=> alert(response.data)).catch(error=> alert(error));
+  //console.log(sendData);
+
+  axios.post('http://localhost:80/authenticate.php',sendData).then((result) => {
+    
+      if (result.data.Status === '200') { 
+          window.localStorage.setItem('email', result.data.email);
+          window.localStorage.setItem('name', (result.data.name));  
+          navigate(`/Home`);
+      }
+  else  {
+     //props.history.push('/Dashboard')  
+     //props.history.push('/Dashboard') Redirect
+     
+     alert('Invalid User'); 
+  }
+})  
+}
+  // const handleSubmit = () => {
+  //   if(email.length===0){
+  //     alert("Email is required");
+  //   }
+  //   else if(password.length === 0){
+  //     alert("Password is required");
+  //   }
+  //   else{
+  //     const url = 'http://localhost:80/authenticate.php ';
+  //     let fData = new FormData();
+  //     fData.append('email', email);
+  //     fData.append('password', password);
+  //     axios.post(url,fData).then(response=> alert(response.data)).catch(error=> alert(error));
 
       // axios.post(url,fData).then(response=> {
       //   if (response.data === 'Success!') {
@@ -50,11 +77,10 @@ export default function Login() {
       //     alert("Invalid email or password.");
       //   }
       // }).catch(error=> alert(error));
-    }
-  };
+    
 
   return (
-    
+    <form onSubmit ={submitForm}>
     <div>
       <Flex
         w="100vw"
@@ -97,7 +123,7 @@ export default function Login() {
           >
             Email
           </Box>
-          <Input placeholder="Enter email" size="lg" value ={email} onChange={(e) => setEmail(e.target.value)}/>
+          <Input placeholder="Enter email" size="lg" name ='email' onChange={handleChange} value = {user.email}/>
           <Box
             color="#d87e79"
             fontWeight="light"
@@ -108,11 +134,11 @@ export default function Login() {
           >
             Password
             </Box>
-            <Input placeholder="Enter password" size="lg" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input placeholder="Enter password" size="lg" name="password" type="password" onChange={handleChange} value = {user.password} />
         </Stack>
         <Box paddingTop={300}>
-          <Button color="#d87e79" size="lg" height="70px" width="600px">
-          <Link to = "/home" name = "submit" id= 'submit'  onClick={handleSubmit} >Login   </Link> 
+          <Button color="#d87e79" size="lg" height="70px" width="600px" type = "submit" name = "submit" value = "Login!">
+          {/* <Link to = "/home" name = "submit" id= 'submit'  onClick={handleSubmit} >Login   </Link>  */}
           </Button>
         </Box>
         <Box
@@ -133,10 +159,11 @@ export default function Login() {
     
     // <div className="home">
     //   <h1>Welcome to Little Chef</h1>
-    //   <button type="submit" className="GetStartedButton" onClick={handleSubmit}>
+    //    <button type="submit" className="GetStartedButton" >
     //     Get Started <a href="./welcome"></a>
     //   </button>
     // </div>
+    </form>
   );
 }
 

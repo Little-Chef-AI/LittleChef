@@ -1,46 +1,35 @@
 <?php
   header('Access-Control-Allow-Origin: *');
+  header("Access-Control-Allow-Header: access");
   header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-  header('Access-Control-Allow-Headers: Content-Type');
+  header("Content-Type: application/json; charset=UTF-8");
+  header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers,Authorization, X-Requested-With');
 
-  $conn = new mysqli("localhost","root","","chef_login");
-  function check_login($con) {
+  
+  $con = mysqli_connect("localhost", "root","","chef_login");
+  mysqli_select_db($con, "react-chef_login");
 
-	if(isset($_SESSION['user_id'])) {
-		$id = $_SESSION['user_id'];
-		$query = "select * from users where user_id = '$id' limit 1";
+  $data = json_decode(file_get_contents("php://input"));
 
-		$result = mysqli_query($con,$query);
-		if($result && mysqli_num_rows($result) > 0) {
-			$user_data = mysqli_fetch_assoc($result);
-			return $user_data;
-		}
-	}
+  $email = $data -> email;
+  $password = $data -> password;
 
-	header("Location: Home.js");
-	die;
+  $result = mysqli_query($con, "SELECT * FROM users where email = '".$email. "' AND password = '".$password."'");
 
-}
+  $nums = mysqli_num_rows($result);
+  $rs = mysqli_fetch_array($result);
 
-  if (mysqli_connect_error()) {
-    echo mysqli_connect_error();
-    exit();
-  } else {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+  if($nums >=1){
 
-    // query the database to check if the user credentials are valid
-    $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
+    http_response_code(200);
+    $outp = "";
 
-    if (mysqli_num_rows($result) > 0) {
-      // authentication successful
-      echo "Authentication successful!";
-    } else {
-      // authentication failed
-      echo "Authentication failed!";
-    }
+    $outp .= '{"email":"' .$rs["email"] . '", ';
+    $outp .= '"name":"' .$rs["name"] . '",';
+    $outp .= '"Status":"200"}';
 
-    $conn->close();
+    echo $outp;
+  }else{
+    http_response_code(202);
   }
 ?>

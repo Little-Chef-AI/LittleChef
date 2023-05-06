@@ -10,6 +10,7 @@ import {
   Button,
   Divider,
   Box,
+  Link
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,11 @@ export default function Navbar() {
 
   function handleClick() {
     navigate("/home");
+  }
+  const LogOut = () => {
+    localStorage.removeItem('email');
+    localStorage.clear();
+    navigate('/Login');
   }
   return (
     <div>
@@ -33,6 +39,7 @@ export default function Navbar() {
             >
               Home
             </Button>
+            
             <Button
               onClick={handleClick}
               size="lg"
@@ -52,9 +59,18 @@ export default function Navbar() {
               
               Profile
             </Button>
+            <Button
+              size="lg"
+              mr={4}
+              variant="ghost"
+              textColor="white"
+            >
+              <Link to='' onClick={LogOut}>LogOut</Link>
+            </Button> 
           </Flex>
         </Box>
       </Flex>
+
     </div>
     // <div>
     //   <Flex

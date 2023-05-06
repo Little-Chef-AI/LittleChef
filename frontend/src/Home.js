@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Routes, Route, useNavigate, Navigate} from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
 
@@ -26,25 +27,37 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 function Home() {
 
   const [ingredientsInput, setingredientsInput] = useState('');
-  const [result, setResult] = useState('');
-  const [userName, setUserName] = useState('');
-  // //   const [is_loading, set_is_loading] = useState(false);
-  const userID = sessionStorage.getItem('user_id');
-  const url = 'http://localhost:80/authenticate.php ';
-      let fData = new FormData();
+  const [result, setResult] = useState({
+    id : '',
+    recipe_text: '',
+  })
+  let navigate = useNavigate();
+  let history = useNavigate();
+  const [user, setUser] = useState('');
+  useEffect(() => {
+    var userName = localStorage.getItem('name');
+    setUser(userName);
+},
+  [])
 
-  axios.post(url, fData).then(response => {
-    if (response.data === 'Authentication successful!') {
-      // Fetch the user name from the database and update the state variable
-      axios.get(`http://localhost:80/authenticate.php?email=${userName}`).then(res => {
-        setUserName(res.data);
-      }).catch(error => alert(error));
-      alert("Login successful!");
-      // redirect to home page
-    } else {
-      alert("Invalid email or password.");
-    }
-  }).catch(error => alert(error));
+  
+  // // //   const [is_loading, set_is_loading] = useState(false);
+  // const userID = sessionStorage.getItem('user_id');
+  // const url = 'http://localhost:80/authenticate.php ';
+  //     let fData = new FormData();
+
+  // axios.post(url, fData).then(response => {
+  //   if (response.data === 'Authentication successful!') {
+  //     // Fetch the user name from the database and update the state variable
+  //     axios.get(`http://localhost:80/authenticate.php?email=${userName}`).then(res => {
+  //       setUserName(res.data);
+  //     }).catch(error => alert(error));
+  //     alert("Login successful!");
+  //     // redirect to home page
+  //   } else {
+  //     alert("Invalid email or password.");
+  //   }
+  // }).catch(error => alert(error));
 
   async function onSubmit(event) {
     console.log('calling openai api');
@@ -78,6 +91,19 @@ function Home() {
         console.log(data);
         setResult(data.choices[0].text); //recipe
       });
+
+    //   console.log(setResult);
+    //   axios.post('http://localhost:80/recipe.php',setResult)
+    //   .then((result)=>{
+    //       if (result.data.Status == 'Invalid') { 
+    //     alert('Invalid User');  
+    //       }
+    //   else  {
+    //      //props.history.push('/Dashboard')  
+    //      //props.history.push('/Dashboard') Redirect
+    //      history(`/Home`);
+    //   }
+    // })  
   }
 
   return (
@@ -98,7 +124,7 @@ function Home() {
             marginRight={'18%'}
             mt={20}
           >
-            Hello <div>{userName}</div>, 
+            Hello {user}, 
     Welcome to Little Chef. How may I help you?
           </Box>
           <Box
