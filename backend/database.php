@@ -19,9 +19,12 @@ header('Access-Control-Allow-Headers: Content-Type');
          
         if($res){
             echo "Success!";
+            echo json_encode($response);
         }
         else{
             echo "Error!";
+            echo json_encode($response);
+
         }
         $conn->close();
     }

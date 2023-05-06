@@ -1,3 +1,4 @@
+
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
@@ -26,6 +27,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
   const handleSubmit = () => {
     if(email.length===0){
       alert("Email is required");
@@ -34,18 +36,20 @@ export default function Login() {
       alert("Password is required");
     }
     else{
-      const url = 'http://localhost:80/authenticate.php';
+      const url = 'http://localhost:80/authenticate.php ';
       let fData = new FormData();
       fData.append('email', email);
       fData.append('password', password);
-      axios.post(url,fData).then(response=> {
-        if (response.data === 'Success!') {
-          alert("Login successful!");
-          // redirect to home page
-        } else {
-          alert("Invalid email or password.");
-        }
-      }).catch(error=> alert(error));
+      axios.post(url,fData).then(response=> alert(response.data)).catch(error=> alert(error));
+
+      // axios.post(url,fData).then(response=> {
+      //   if (response.data === 'Success!') {
+      //     alert("Login successful!");
+      //     // redirect to home page
+      //   } else {
+      //     alert("Invalid email or password.");
+      //   }
+      // }).catch(error=> alert(error));
     }
   };
 
@@ -108,7 +112,7 @@ export default function Login() {
         </Stack>
         <Box paddingTop={300}>
           <Button color="#d87e79" size="lg" height="70px" width="600px">
-          <Link to = "/login" name = "submit" id= 'submit'  onClick={handleSubmit} >Login   </Link> 
+          <Link to = "/home" name = "submit" id= 'submit'  onClick={handleSubmit} >Login   </Link> 
           </Button>
         </Box>
         <Box

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
-
+import axios from 'axios';
 
 import {
   Text,
@@ -27,7 +27,24 @@ function Home() {
 
   const [ingredientsInput, setingredientsInput] = useState('');
   const [result, setResult] = useState('');
-  //   const [is_loading, set_is_loading] = useState(false);
+  const [userName, setUserName] = useState('');
+  // //   const [is_loading, set_is_loading] = useState(false);
+  const userID = sessionStorage.getItem('user_id');
+  const url = 'http://localhost:80/authenticate.php ';
+      let fData = new FormData();
+
+  axios.post(url, fData).then(response => {
+    if (response.data === 'Authentication successful!') {
+      // Fetch the user name from the database and update the state variable
+      axios.get(`http://localhost:80/authenticate.php?email=${userName}`).then(res => {
+        setUserName(res.data);
+      }).catch(error => alert(error));
+      alert("Login successful!");
+      // redirect to home page
+    } else {
+      alert("Invalid email or password.");
+    }
+  }).catch(error => alert(error));
 
   async function onSubmit(event) {
     console.log('calling openai api');
@@ -81,7 +98,7 @@ function Home() {
             marginRight={'18%'}
             mt={20}
           >
-            Hello, 
+            Hello <div>{userName}</div>, 
     Welcome to Little Chef. How may I help you?
           </Box>
           <Box
