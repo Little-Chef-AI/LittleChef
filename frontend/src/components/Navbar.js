@@ -50,6 +50,9 @@ export default function Navbar() {
           >
             Saved Recipes
           </Button>
+          <Button size="lg" backgroundColor="#809ED0" textColor="white">
+            Login
+          </Button>
           <Button size="lg" backgroundColor="#d0b280" textColor="white">
             Logout
           </Button>
