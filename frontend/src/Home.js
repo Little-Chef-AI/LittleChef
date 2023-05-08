@@ -27,10 +27,7 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 function Home() {
 
   const [ingredientsInput, setingredientsInput] = useState('');
-  const [result, setResult] = useState({
-    id : '',
-    recipe_text: '',
-  })
+  const [result, setResult] = useState('');
   let navigate = useNavigate();
   let history = useNavigate();
   const [user, setUser] = useState('');

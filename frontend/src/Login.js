@@ -137,7 +137,7 @@ const submitForm = (e) => {
             <Input placeholder="Enter password" size="lg" name="password" type="password" onChange={handleChange} value = {user.password} />
         </Stack>
         <Box paddingTop={300}>
-          <Button color="#d87e79" size="lg" height="70px" width="600px" type = "submit" name = "submit" value = "Login!">
+          <Button color="#d87e79" size="lg" height="70px" width="600px" type = "submit" name = "submit" value = "Login!" >
           {/* <Link to = "/home" name = "submit" id= 'submit'  onClick={handleSubmit} >Login   </Link>  */}
           </Button>
         </Box>
@@ -145,7 +145,7 @@ const submitForm = (e) => {
           color="#d87e79"
           fontWeight="light"
           fontSize="2xl"
-          mt={40}
+          mt={40} 
           paddingBottom={2}
           paddingLeft={1500}
         >
