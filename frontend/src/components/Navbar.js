@@ -16,8 +16,13 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ currentUser }) {
   const navigate = useNavigate();
+
+  function logout() {
+    localStorage.removeItem("currentUser");
+    navigate("/welcome");
+  }
 
   return (
     <div>
@@ -50,10 +55,13 @@ export default function Navbar() {
           >
             Saved Recipes
           </Button>
-          <Button size="lg" backgroundColor="#809ED0" textColor="white">
-            Login
-          </Button>
-          <Button size="lg" backgroundColor="#d0b280" textColor="white">
+
+          <Button
+            size="lg"
+            backgroundColor="#d0b280"
+            textColor="white"
+            onClick={logout}
+          >
             Logout
           </Button>
         </HStack>

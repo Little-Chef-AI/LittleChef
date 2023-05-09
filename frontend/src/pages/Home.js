@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Spinner } from "@chakra-ui/react";
 
 import {
   Text,
@@ -23,9 +24,19 @@ import Navbar from "../components/Navbar";
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 function Home() {
+  const [email, setEmail] = useState(null);
   const [ingredientsInput, setingredientsInput] = useState("");
-  const [result, setResult] = useState("");
-  //   const [is_loading, set_is_loading] = useState(false);
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let email = localStorage.getItem("currentUser");
+    if (email) {
+      setEmail(email);
+    } else {
+      navigate("/welcome");
+    }
+  }, []);
 
   async function onSubmit(event) {
     console.log("calling openai api");
@@ -43,7 +54,7 @@ function Home() {
     };
 
     event.preventDefault();
-    // set_is_loading(true);
+    setLoading(true);
     await fetch("https://api.openai.com/v1/completions", {
       method: "POST",
       headers: {
@@ -58,27 +69,47 @@ function Home() {
       .then((data) => {
         console.log(data);
         setResult(data.choices[0].text); //recipe
+        setLoading(false);
       });
   }
 
+  async function saveRecipe() {
+    if (result) {
+      var fd = new FormData();
+      fd.append("email", email);
+      fd.append("recipe", result);
+
+      // set_is_loading(true);
+      try {
+        let response = await fetch("/saveRecipe.php", {
+          method: "POST",
+          body: fd,
+        })
+          .then((response) => response.json())
+          .then((response) => console.log(response));
+      } catch (error) {
+        console.log("Handling Error");
+      }
+    }
+  }
+
+  function formatString(s) {
+    let stringToSplit = s || "";
+    let strings = stringToSplit.split("\n");
+    return strings;
+  }
+
   return (
-    <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
+    <Box backgroundColor="#3c3f63" w={"100vw"} h={"100%"} minH={"100vh"}>
       <Navbar />
       <Divider orientation="horizontal" />
 
       {/* actual code */}
       <Center>
-        <Flex
-          my={10}
-          w={"100%"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          gap={8}
-        >
-          <VStack gap={10} w={["95%", "80%", "60%", "50%", "35%"]} h={"100%"}>
+        <Flex my={10} justifyContent={"center"} gap={8}>
+          <VStack gap={10} h={"100%"}>
             <Box
               alignItem="flex-start"
-              w="60vw"
               textColor="#d87e79"
               fontWeight="semibold"
               fontSize="6xl"
@@ -88,7 +119,6 @@ function Home() {
             </Box>
             <Box
               alignItem="flex-start"
-              w="60vw"
               color="#d87e79"
               fontWeight="light"
               fontSize="4xl"
@@ -96,87 +126,91 @@ function Home() {
               List the food you have in your fridge that you would like to cook
               with. Then save your recipe!{" "}
             </Box>
-            <HStack padding="5%">
-              {/* separate box with ingredients and generated recipe */}
-              <VStack>
-                {/* left side */}
-                <Box
-                  alignItem="flex-start"
+            {/* separate box with ingredients and generated recipe */}
+            <VStack>
+              {/* left side */}
+              <Box
+                alignItem="flex-start"
+                w="30vw"
+                color="#d87e79"
+                fontWeight="seminbold"
+                fontSize="4xl"
+              >
+                Ingredients:
+              </Box>
+              {/* ingredients list */}
+              <Box>
+                <Textarea
+                  textColor="white"
+                  borderColor="white"
+                  placeholder="Type your ingredients here."
+                  fontSize="3xl"
                   w="30vw"
-                  color="#d87e79"
-                  fontWeight="seminbold"
-                  fontSize="4xl"
+                  size="lg"
+                  type="text"
+                  onChange={(e) => setingredientsInput(e.target.value)}
+                />
+              </Box>
+              {/* submit button to get generated recipe */}
+              <Box pt={6}>
+                <Button
+                  onClick={onSubmit}
+                  textColor="white"
+                  backgroundColor="#d87e79"
+                  size="lg"
+                  height="70px"
+                  width="500px"
                 >
-                  Ingredients:
-                </Box>
-                {/* ingredients list */}
-                <Box>
-                  <Textarea
-                    textColor="white"
-                    borderColor="white"
-                    placeholder="Type your ingredients here."
-                    fontSize="3xl"
-                    w="30vw"
-                    h="30vh"
-                    size="lg"
-                    type="text"
-                    onChange={(e) => setingredientsInput(e.target.value)}
-                  />
-                </Box>
-                {/* submit button to get generated recipe */}
-                <Box pt={6}>
-                  <Button
-                    onClick={onSubmit}
-                    textColor="white"
-                    backgroundColor="#d87e79"
-                    size="lg"
-                    height="70px"
-                    width="500px"
-                  >
-                    Submit
-                  </Button>
-                </Box>
-              </VStack>
+                  Submit
+                </Button>
+              </Box>
+            </VStack>
 
-              <VStack>
-                <Box
-                  alignItem="flex-start"
-                  w="30vw"
-                  color="#d87e79"
-                  fontWeight="seminbold"
-                  fontSize="4xl"
-                >
-                  Recipe
-                </Box>
-                {/* generated recipe */}
-                <Box
-                  w="30vw"
-                  h="30vh"
-                  bg="primary"
-                  color="white"
-                  fontSize={45}
-                  p={5}
-                  border={"5px solid white"}
-                  borderRadius={10}
-                >
-                  {result !== "" ? <h3>{result}</h3> : null}
-                </Box>
+            <VStack>
+              <Box
+                alignItem="flex-start"
+                w="30vw"
+                color="#d87e79"
+                fontWeight="seminbold"
+                fontSize="4xl"
+              >
+                Recipe
+              </Box>
+              {/* generated recipe */}
+              <Box
+                w="30vw"
+                bg="primary"
+                color="white"
+                fontSize={45}
+                p={5}
+                border={"5px solid white"}
+                borderRadius={10}
+              >
+                {loading ? (
+                  <Spinner />
+                ) : result !== "" ? (
+                  <h3>
+                    {formatString(result).map((line) => (
+                      <p>{line}</p>
+                    ))}
+                  </h3>
+                ) : null}
+              </Box>
 
-                {/* save recipe button */}
-                <Box>
-                  <Button
-                    onClick={onSubmit}
-                    textColor="white"
-                    backgroundColor="#d87e79"
-                    size="lg"
-                    height="70px"
-                    width="500px"
-                  >
-                    Save Recipe
-                  </Button>
-                </Box>
-              </VStack>
-            </HStack>
+              {/* save recipe button */}
+              <Box>
+                <Button
+                  onClick={saveRecipe}
+                  textColor="white"
+                  backgroundColor="#d87e79"
+                  size="lg"
+                  height="70px"
+                  width="500px"
+                >
+                  Save Recipe
+                </Button>
+              </Box>
+            </VStack>
           </VStack>
         </Flex>
       </Center>

@@ -10,8 +10,11 @@ import {
   VStack,
   Heading,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Welcome() {
+  const navigate = useNavigate();
+
   return (
     <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
       <Center pt="25%">
@@ -34,7 +37,7 @@ export default function Welcome() {
               Welcome to Little Chef
             </Heading>
             <HStack>
-              <Link href="/login">
+              <Link onClick={() => navigate("/login")}>
                 <Button
                   color="#d87e79"
                   size="md"
@@ -46,7 +49,7 @@ export default function Welcome() {
                   Login
                 </Button>
               </Link>
-              <Link href="/signup">
+              <Link onClick={() => navigate("/signup")}>
                 <Button
                   color="#d87e79"
                   size="md"
