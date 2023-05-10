@@ -42,5 +42,5 @@
     ]
   },
   "proxy": "http://localhost:8000",
-  "homepage": "http://localhost:8000/build/"
+  "homepage": "http://cos-cs106.science.sjsu.edu/~014116960/build/"
 }

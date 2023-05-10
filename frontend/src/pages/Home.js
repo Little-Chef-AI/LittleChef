@@ -20,14 +20,17 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
+const REACT_APP_PHP_BASE_URL = process.env.REACT_APP_PHP_BASE_URL;
 
 function Home() {
   const [email, setEmail] = useState(null);
   const [ingredientsInput, setingredientsInput] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let email = localStorage.getItem("currentUser");
@@ -81,7 +84,7 @@ function Home() {
 
       // set_is_loading(true);
       try {
-        let response = await fetch("/saveRecipe.php", {
+        let response = await fetch(REACT_APP_PHP_BASE_URL + "/saveRecipe.php", {
           method: "POST",
           body: fd,
         })
@@ -107,12 +110,12 @@ function Home() {
       {/* actual code */}
       <Center>
         <Flex my={10} justifyContent={"center"} gap={8}>
-          <VStack gap={10} h={"100%"}>
+          <VStack gap={2} h={"100%"}>
             <Box
               alignItem="flex-start"
               textColor="#d87e79"
               fontWeight="semibold"
-              fontSize="6xl"
+              fontSize="5xl"
             >
               {" "}
               Hello, Welcome to Little Chef. How may I help you?
@@ -127,11 +130,11 @@ function Home() {
               with. Then save your recipe!{" "}
             </Box>
             {/* separate box with ingredients and generated recipe */}
-            <VStack>
+            <VStack w={"60vw"}>
               {/* left side */}
               <Box
                 alignItem="flex-start"
-                w="30vw"
+                w="60vw"
                 color="#d87e79"
                 fontWeight="seminbold"
                 fontSize="4xl"
@@ -144,8 +147,8 @@ function Home() {
                   textColor="white"
                   borderColor="white"
                   placeholder="Type your ingredients here."
-                  fontSize="3xl"
-                  w="30vw"
+                  fontSize="2xl"
+                  w="60vw"
                   size="lg"
                   type="text"
                   onChange={(e) => setingredientsInput(e.target.value)}
@@ -169,7 +172,7 @@ function Home() {
             <VStack>
               <Box
                 alignItem="flex-start"
-                w="30vw"
+                w="60vw"
                 color="#d87e79"
                 fontWeight="seminbold"
                 fontSize="4xl"
@@ -178,10 +181,10 @@ function Home() {
               </Box>
               {/* generated recipe */}
               <Box
-                w="30vw"
+                w="60vw"
                 bg="primary"
                 color="white"
-                fontSize={45}
+                fontSize="1xl"
                 p={5}
                 border={"5px solid white"}
                 borderRadius={10}

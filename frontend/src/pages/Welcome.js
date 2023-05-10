@@ -16,54 +16,42 @@ export default function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
-      <Center pt="25%">
-        <Flex
-          my={10}
-          w={"100%"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          gap={8}
-        >
-          <VStack
-            w={["95%", "80%", "60%", "50%", "35%"]}
-            h={"100%"}
-            p={10}
-            justifyContent={"center"}
-            alignItems={"center"}
-            gap={2}
+    <Box backgroundColor="#3c3f63" h={"100%"} minH={"100vh"}>
+      <Center pt={"10vh"}>
+        <VStack gap={2} paddingLeft={"10vw"} paddingRight={"10vw"}>
+          <Heading
+            fontSize="6xl"
+            mt={40}
+            textColor="#d87e79"
+            textAlign="center"
           >
-            <Heading fontSize="6xl" mt={40} textColor="#d87e79">
-              Welcome to Little Chef
-            </Heading>
-            <HStack>
-              <Link onClick={() => navigate("/login")}>
-                <Button
-                  color="#d87e79"
-                  size="md"
-                  height="70px"
-                  width="600px"
-                  type="submit"
-                  onClick={() => {}}
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link onClick={() => navigate("/signup")}>
-                <Button
-                  color="#d87e79"
-                  size="md"
-                  height="70px"
-                  width="600px"
-                  type="submit"
-                  onClick={() => {}}
-                >
-                  Sign Up
-                </Button>
-              </Link>
-            </HStack>
-          </VStack>
-        </Flex>
+            Welcome to Little Chef
+          </Heading>
+          <HStack>
+            <Link onClick={() => navigate("/login")}>
+              <Button
+                color="#d87e79"
+                size="md"
+                w={"25vw"}
+                type="submit"
+                onClick={() => {}}
+              >
+                Login
+              </Button>
+            </Link>
+            <Link onClick={() => navigate("/signup")}>
+              <Button
+                color="#d87e79"
+                size="md"
+                w={"25vw"}
+                type="submit"
+                onClick={() => {}}
+              >
+                Sign Up
+              </Button>
+            </Link>
+          </HStack>
+        </VStack>
       </Center>
     </Box>
   );

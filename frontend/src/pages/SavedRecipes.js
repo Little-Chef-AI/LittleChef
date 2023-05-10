@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+const REACT_APP_PHP_BASE_URL = process.env.REACT_APP_PHP_BASE_URL;
 
 function SavedRecipes() {
   const [recipies, setRecipies] = useState([]);
@@ -33,7 +34,8 @@ function SavedRecipes() {
 
   async function fetchAPI(email) {
     await fetch(
-      "/getSavedRecipes.php?" +
+      REACT_APP_PHP_BASE_URL +
+        "/getSavedRecipes.php?" +
         new URLSearchParams({
           email: email,
         }),
@@ -72,7 +74,7 @@ function SavedRecipes() {
           alignItems={"center"}
           gap={8}
         >
-          <VStack gap={10} w={["95%", "80%", "60%", "50%", "35%"]} h={"100%"}>
+          <VStack gap={2} w={["95%", "80%", "60%", "50%", "35%"]} h={"100%"}>
             <Box
               alignItem="flex-start"
               w="60vw"
@@ -111,7 +113,7 @@ function SavedRecipes() {
                     w="60vw"
                     bg="primary"
                     color="white"
-                    fontSize={45}
+                    fontSize="1xl"
                     p={5}
                     border={"5px solid white"}
                     borderRadius={10}

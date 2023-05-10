@@ -15,14 +15,17 @@ import {
 } from "@chakra-ui/react";
 //import { Link as ReachLink } from "@reach/router";
 import { useNavigate } from "react-router-dom";
+const REACT_APP_PHP_BASE_URL = process.env.REACT_APP_PHP_BASE_URL;
 
 // const handleSubmit = async (e) => {
 //   e.preventDefault();
 // };
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [errorMessage, setErorMessage] = useState();
+
   const navigate = useNavigate();
 
   async function onSubmit(event) {
@@ -33,16 +36,24 @@ export default function Login() {
     event.preventDefault();
     // set_is_loading(true);
     try {
-      let response = await fetch("/signin.php", {
+      let response = await fetch(REACT_APP_PHP_BASE_URL + "/signin.php", {
         method: "POST",
         credentials: "include",
         body: fd,
       })
-        .then((response) => response.json())
         .then((response) => {
           console.log(response);
-          localStorage.setItem("currentUser", response.email);
-          navigate("/home");
+          return response.json();
+        })
+        .then((response) => {
+          console.log(response);
+          let message = response["message"];
+          if (!message) {
+            localStorage.setItem("currentUser", response.email);
+            navigate("/home");
+          } else {
+            setErorMessage(message);
+          }
         });
     } catch (error) {
       console.log("Handling Error");
@@ -50,16 +61,28 @@ export default function Login() {
   }
 
   return (
-    <Box backgroundColor="#3c3f63" w={"100vw"} h={"100vh"}>
+    <Box backgroundColor="#3c3f63" h={"100%"} minH={"100vh"}>
       {/* <Heading textColor="#d87e79">Login</Heading> */}
-      <Center pt="15%">
+      <Center pt={"10vh"}>
         <Flex
           my={10}
           w={"100%"}
           justifyContent={"center"}
           alignItems={"center"}
           gap={8}
+          flexDir={"column"}
         >
+          {errorMessage ? (
+            <Box
+              textColor="red"
+              backgroundColor="white"
+              p={"10px"}
+              border={"white"}
+              borderRadius={10}
+            >
+              {errorMessage}
+            </Box>
+          ) : null}
           <VStack
             w={["95%", "80%", "60%", "50%", "35%"]}
             h={"100%"}
@@ -71,6 +94,7 @@ export default function Login() {
             borderRadius={30}
           >
             <Heading textColor="#d87e79">Login</Heading>
+
             <FormControl isRequired>
               <FormLabel textColor="white" m={0} display={"inline"}>
                 Email
@@ -89,19 +113,18 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
+
             <Box paddingTop={10}>
-              <Link>
-                <Button
-                  backgroundColor="#d87e79"
-                  textColor="white"
-                  size="lg"
-                  height="70px"
-                  width="300px"
-                  onClick={onSubmit}
-                >
-                  Login
-                </Button>
-              </Link>
+              <Button
+                backgroundColor="#d87e79"
+                textColor="white"
+                size="lg"
+                height="70px"
+                width="300px"
+                onClick={onSubmit}
+              >
+                Login
+              </Button>
             </Box>
 
             <Box color="#d87e79" fontWeight="light" fontSize="2xl">
