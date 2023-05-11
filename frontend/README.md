@@ -68,3 +68,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Adding ChakraUI
+
+- [ChakraUI](https://chakra-ui.com/getting-started/cra-guide)
+
+- Under the Frameworks section in ChakraUI, install using the command in Manual Installation
+
+```sh
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+## VSCode Setup
+
+- Be sure to install Prettier - Code formatter which makes reading the code more organized an in the correct indentation.
+
+## Running the Code
+
+**Run Frontend**
+
+```sh
+npm run start
+```
+
+**Run Backend**
+
+```sh
+php -S localhost:8000
+```
